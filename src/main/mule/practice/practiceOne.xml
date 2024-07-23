@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e060c001-1816-4a18-b69b-b4f6899d3c72" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="ecd6ebb0-c1bb-4d83-b62f-15e5e9d9e3d4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="practiceOneFlow" doc:id="e67e3655-8af8-4344-af3d-dbbe7cdb09d2" >
+		<http:listener doc:name="Listener" doc:id="1cde600a-30cb-4cea-ba6c-f66cbee95f16" config-ref="HTTP_Listener_config1" path="/hello"/>
+		<logger level="INFO" doc:name="Logger" doc:id="147bc12c-2061-466f-be0c-61bb5d5c0eec" message='#["message"]'/>
+		<flow-ref doc:name="Sub_FlowOne Reference" doc:id="f99c059f-b305-4fba-ae93-adc25d1851b2" name="sub_flowOne"/>
+		<flow-ref doc:name="private_Flow Reference" doc:id="4f679a68-4755-4fb3-aaef-171f166e7740" name="privateFlowOne"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9e608598-bbd5-407c-86a9-85e477028428" message='#["end"]'/>
+	</flow>
+	<flow name="privateFlowOne" doc:id="82ccb602-53f0-4291-8bdb-8172e60d5a30" >
+		<logger level="INFO" doc:name="Logger" doc:id="71759c45-bb84-4eb5-bd03-feadfbbc8eb2" message='#["This Private Flow"]'/>
+		<flow-ref doc:name="sub_flowTwo  Reference" doc:id="8c025966-d95c-4b4f-aa9c-5a996f38401f" name="Sub_FlowTwo"/>
+	</flow>
+	<sub-flow name="sub_flowOne" doc:id="0d99dd3c-f9b2-4454-bf24-7e5c135649d8" >
+		<logger level="INFO" doc:name="Logger" doc:id="8f45e898-502f-4802-8685-b9323bc2b05e" message='#["This is sub_flowOne"]'/>
+	</sub-flow>
+	<sub-flow name="Sub_FlowTwo" doc:id="71f1ff80-e18c-4c4b-8832-9be14970d280" >
+		<logger level="INFO" doc:name="Logger" doc:id="207134b6-df9a-48a6-82c9-01ce99d40b0f" message='#["This is second sub_flow"]'/>
+	</sub-flow>
+</mule>
