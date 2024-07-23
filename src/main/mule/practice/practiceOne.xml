@@ -12,10 +12,11 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="practiceOneFlow" doc:id="e67e3655-8af8-4344-af3d-dbbe7cdb09d2" >
 		<http:listener doc:name="Listener" doc:id="1cde600a-30cb-4cea-ba6c-f66cbee95f16" config-ref="HTTP_Listener_config1" path="/hello"/>
-		<logger level="INFO" doc:name="Logger" doc:id="147bc12c-2061-466f-be0c-61bb5d5c0eec" message='#["message"]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="147bc12c-2061-466f-be0c-61bb5d5c0eec" message='#["start of the flow"]'/>
 		<flow-ref doc:name="Sub_FlowOne Reference" doc:id="f99c059f-b305-4fba-ae93-adc25d1851b2" name="sub_flowOne"/>
 		<flow-ref doc:name="private_Flow Reference" doc:id="4f679a68-4755-4fb3-aaef-171f166e7740" name="privateFlowOne"/>
 		<logger level="INFO" doc:name="Logger" doc:id="9e608598-bbd5-407c-86a9-85e477028428" message='#["end"]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="3022326c-15aa-4e87-88ef-af7bfe99b5fe" message='#["end of the flow"]'/>
 	</flow>
 	<flow name="privateFlowOne" doc:id="82ccb602-53f0-4291-8bdb-8172e60d5a30" >
 		<logger level="INFO" doc:name="Logger" doc:id="71759c45-bb84-4eb5-bd03-feadfbbc8eb2" message='#["This Private Flow"]'/>
